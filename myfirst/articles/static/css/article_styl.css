@@ -1,0 +1,39 @@
+body {
+ background-image: url(images/redact.jpg);
+
+}
+h3{
+  margin-left: 100px;
+}
+#comment {
+
+  box-shadow: 3px 3px 7px #000000;
+margin-left: 400px;
+  background: #5FF6C3; /* Цвет фона */
+      width: 400px; /* Ширина блока */
+      padding: 50px; /* Поля */
+      word-break: break-all; /* Перенос слов */
+      border-radius: 20px;
+}
+.button {
+  margin-left: 5px;
+  border-radius: 20px;
+  background-color: #DF8CF0;
+  border: 1px solid #323232;
+  text-decoration: none;
+  opacity: 0.5;
+}
+.collor:hover {
+  opacity: 1;
+}
+#tabel{
+
+    border: 1px  solid #323232;
+}
+#name {
+  background-color: #16BD85;
+  color: #F7FA05;
+  font-size: 20px;
+  padding: 20px;
+
+}

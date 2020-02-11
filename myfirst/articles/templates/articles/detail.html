@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}{{article.article_title}}{% endblock %}
+
+{% block content %}
+
+  
+
+
+  <table border="3" id="tabel">
+<td>
+    <h3>Ваши комментарии</h3>
+
+
+    {% if latest_articles_list %}
+      {% for c in latest_articles_list %}
+        <p><div id="name">
+            <strong>{{c.id}}{{c.authorn_name}}<a class="button collor" href="{% url 'articles:fan' c.id%}"> редактировать</a></strong>
+            </div>
+            <div id="comment">
+            <p>{{c.comment_text}}</p>
+            </div>
+
+        </p>
+      {% endfor %}
+    {% else %}
+    Коменнтарий не найден
+{% endif %}
+
+
+
+
+  <form action="{% url 'articles:leave_comment' article.id %}" method="POST">
+
+      {% csrf_token %}
+
+      <input type="text" required placeholder="ваше имя" name="name"><br>
+      <textarea name="text" required="" placeholder="Текст комментария" rows="10" cols="30">
+      </textarea><br>
+
+      <button class="button collor"type="submit">добавить пост</button>
+
+    </form>
+<p>
+
+
+
+
+  </p>
+
+{% endblock %}

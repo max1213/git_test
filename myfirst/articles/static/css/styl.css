@@ -1,0 +1,52 @@
+#name {
+
+  color: #F7FA05;
+  font-size: 40px;
+  padding: 20px;
+}
+#post {
+  font-size: 20px;
+}
+body {
+ background-image: url(images/redact.jpg);
+
+}
+td {
+  border-radius: 20px;
+}
+
+.button {
+  margin-left: 5px;
+  border-radius: 20px;
+  background-color: #DF8CF0;
+  border: 1px solid #323232;
+  text-decoration: none;
+  opacity: 0.5;
+}
+.collor:hover {
+  opacity: 1;
+}
+table {
+
+   border-radius: 20px;
+  background-color: #5FF6C3;
+  margin-top: 150px;
+  margin-left: 500px;
+  box-shadow: 3px 3px 7px #000000;
+}
+
+textarea {
+  border-radius: 20px;
+   background-color: #8FF7E4;
+
+}
+.button {
+  margin-left: 5px;
+  border-radius: 20px;
+  background-color: #DF8CF0;
+  border: 1px solid #323232;
+  opacity: 0.5;
+}
+.collor:hover {
+  opacity: 1;
+}

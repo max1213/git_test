@@ -1,6 +1,6 @@
 from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render
-
+from django.utils.datastructures import MultiValueDictKeyError
 from django.urls import reverse
 
 from articles.models import Article, Comment
@@ -13,10 +13,42 @@ def detail(request, article_id):
     try:
         a = Article.objects.get( id = article_id )
     except:
-        raise Http404("Статья не найдена")
+        raise Http404("Статья не найдена лол")
 
     latest_articles_list = a.comment_set.order_by('-id')[:10]
     return render(request, 'articles/detail.html', {'article': a, 'latest_articles_list': latest_articles_list})
+
+
+
+    return HttpResponseRedirect(reverse('articles:detail', args = (a.id,)) )
+def test(request, comment_id):
+
+    a = Comment.objects.get( id = comment_id )
+    a.comment_text=request.POST['text']
+    a.save()
+
+    return HttpResponseRedirect(reverse('articles:detaill', args =  (a.id,)) )
+
+def detaill(request, comment_id):
+
+
+    a = Article.objects.get( id = 1)
+    latest_articles_list = a.comment_set.order_by('-id')[:10]
+    return render(request, 'articles/detail.html', {'article': a, 'latest_articles_list': latest_articles_list})
+
+def fan(request, comment_id):
+    try:
+        a =  Comment.objects.get( id = comment_id )
+    except:
+        raise Http404("Статья не найдена")
+    return render(request, 'articles/redact.html', {'comment': a})
+
+def del_comment(request, comment_id):
+    a = Comment.objects.get( id = comment_id )
+    a.delete()
+    a = '1'
+
+    return HttpResponseRedirect(reverse('articles:detaill', args =  (a)) )
 
 def leave_comment(request, article_id):
     try:
@@ -28,29 +60,3 @@ def leave_comment(request, article_id):
 
 
     return HttpResponseRedirect( reverse('articles:detail', args = (a.id,)) )
-
-def redact_comment(request, article_id):
-    try:
-        с = Article.objects.get( id = article_id )
-    except:
-        raise Http404("Статья не найдена")
-
-    a = Comment.objects.get( id = request.POST['name'] )
-
-    a.comment_text=request.POST['text']
-    a.save()
-
-    return HttpResponseRedirect( reverse('articles:detail', args = (с.id,)) )
-
-def del_comment(request, article_id):
-    try:
-        с = Article.objects.get( id = article_id )
-    except:
-        raise Http404("Статья не найдена")
-
-    a = Comment.objects.get( id = request.POST['name'] )
-
-    a.delete()
-
-
-    return HttpResponseRedirect( reverse('articles:detail', args = (с.id,)) )

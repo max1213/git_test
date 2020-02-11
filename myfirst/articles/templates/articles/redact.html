@@ -1,0 +1,35 @@
+{% extends 'redact_base.html' %}
+
+{% block title %}
+{{article.article_title}}
+
+{% endblock %}
+
+{% block lol %}
+
+<table border="3">
+<tr><td>
+<em id="name">{{comment.authorn_name}}</em>
+</td></tr>
+<tr>
+  <td>
+<form action= "{% url 'articles:test' comment.id %}"method= "POST" >
+
+{% csrf_token %}
+
+
+  <textarea name="text" required="" placeholder="Текст комментария" rows="10" cols="30">
+  {{comment.comment_text}}</textarea><br>
+
+  <button type="submit" class="button collor">сохранить пост</button>
+
+</form>
+
+<form action= "{% url 'articles:del_comment' comment.id %}"method= "POST" >
+  {% csrf_token %}
+
+<button type="submit" class="button collor">удалить пост</button>
+</form>
+</td>
+</tr>
+{% endblock %}
